@@ -51,27 +51,27 @@
 
             <!-- Common labels -->
             <Annotations Target="NorthwindModel.Order/OrderID">
-                <Annotation Term="Common.Label" String="Order ID" />
+                <Annotation Term="Common.Label" String="{@i18n>orderId}" />
             </Annotations>
 
             <Annotations Target="NorthwindModel.Order/CustomerID">
-                <Annotation Term="Common.Label" String="Customer ID" />
+                <Annotation Term="Common.Label" String="{@i18n>customerId}" />
             </Annotations>
 
             <Annotations Target="NorthwindModel.Order/EmployeeID">
-                <Annotation Term="Common.Label" String="Employee ID" />
+                <Annotation Term="Common.Label" String="{@i18n>employeeId}" />
             </Annotations>
 
             <Annotations Target="NorthwindModel.Order/ShipVia">
-                <Annotation Term="Common.Label" String="Ship Via" />
+                <Annotation Term="Common.Label" String="{@i18n>shipVia}" />
             </Annotations>
 
             <Annotations Target="NorthwindModel.Order/ShipCity">
-                <Annotation Term="Common.Label" String="Ship City" />
+                <Annotation Term="Common.Label" String="{@i18n>shipCity}" />
             </Annotations>
 
             <Annotations Target="NorthwindModel.Order/ShipCountry">
-                <Annotation Term="Common.Label" String="Ship Country" />
+                <Annotation Term="Common.Label" String="{@i18n>shipCountry}" />
             </Annotations>
 
             <!-- Sorting by EmployeeID -->
@@ -93,6 +93,164 @@
                             </Collection>
                         </PropertyValue>
                     </Record>
+                </Annotation>
+
+                <!-- Object Page header info -->
+
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <!-- For singular header title at the top of the page -->
+                        <PropertyValue Property="TypeName" String="{@i18n>order}" />
+                        <!-- For Plural header title at the top of the page -->
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>orders}" />
+                        <!-- Tital of the header -->
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="OrderID" />
+                            </Record>
+                        </PropertyValue>
+                        <!-- Description of the Header -->
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="CustomerID" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <!-- Object Page Sections using 'UI.Facets' -->
+                <!-- To create 'multiple  sections', we first have to create a 'Reference' for each  -->
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <!-- UI.ReferenceFacet -> Acts as a 'pointer' linking a section/facet container to actual content  -->
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>orderInformation}" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#orderInfo" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>shippingInformation}" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#shippingInfo" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>shippingAddress}" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#shippingAddress" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>customer}" />
+                            <PropertyValue Property="Target" AnnotationPath="Customer/@UI.LineItem" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <!-- Section 1 Order Information  -->
+
+                <Annotation Term="UI.FieldGroup" Qualifier="orderInfo">
+                    <!-- UI.FieldGroup -> Creats a section 
+                         Qualifer      -> helps to locate fefernce facet of given 'nameTag' -->
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="OrderID" />
+                                    <PropertyValue Property="Label" String="{@i18n>orderId}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="CustomerID" />
+                                    <PropertyValue Property="Label" String="{@i18n>customerId}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="EmployeeID" />
+                                    <PropertyValue Property="Label" String="{@i18n>employeeId}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="OrderDate" />
+                                    <PropertyValue Property="Label" String="{@i18n>orderDate}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="RequiredDate" />
+                                    <PropertyValue Property="Label" String="{@i18n>requiredDate}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShippedDate" />
+                                    <PropertyValue Property="Label" String="{@i18n>shippedDate}" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <!-- Section 2 Shipping Information  -->
+
+                <Annotation Term="UI.FieldGroup" Qualifier="shippingInfo">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Shipper/CompanyName" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipper}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="Freight" />
+                                    <PropertyValue Property="Label" String="{@i18n>freight}" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <!-- Section 3 Shipping Address  -->
+
+                <Annotation Term="UI.FieldGroup" Qualifier="shippingAddress">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShipName" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipName}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShipAddress" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipAddress}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShipCity" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipCity}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShipRegion" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipRegion}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShipPostalCode" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipPostalCode}" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ShipCountry" />
+                                    <PropertyValue Property="Label" String="{@i18n>shipCountry}" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <!-- Section 4 Customers  -->
+            <Annotations Target="NorthwindModel.Customer">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CustomerID" />
+                            <PropertyValue Property="Label" String="{@i18n>customerId}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CompanyName" />
+                            <PropertyValue Property="Label" String="{@i18n>companyName}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ContactName" />
+                            <PropertyValue Property="Label" String="{@i18n>contactName}" />
+                        </Record>
+                    </Collection>
                 </Annotation>
             </Annotations>
         </Schema>
