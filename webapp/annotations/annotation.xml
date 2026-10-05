@@ -137,7 +137,7 @@
                         </Record>
                         <Record Type="UI.ReferenceFacet">
                             <PropertyValue Property="Label" String="{@i18n>customer}" />
-                            <PropertyValue Property="Target" AnnotationPath="Customer/@UI.LineItem" />
+                            <PropertyValue Property="Target" AnnotationPath="Order_Details/@UI.LineItem" />
                         </Record>
                     </Collection>
                 </Annotation>
@@ -235,20 +235,28 @@
             </Annotations>
 
             <!-- Section 4 Customers  -->
-            <Annotations Target="NorthwindModel.Customer">
+            <Annotations Target="NorthwindModel.Order_Detail">
                 <Annotation Term="UI.LineItem">
                     <Collection>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CustomerID" />
-                            <PropertyValue Property="Label" String="{@i18n>customerId}" />
+                            <PropertyValue Property="Value" Path="OrderID" />
+                            <PropertyValue Property="Label" String="{@i18n>orderId}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="CompanyName" />
-                            <PropertyValue Property="Label" String="{@i18n>companyName}" />
+                            <PropertyValue Property="Value" Path="ProductID" />
+                            <PropertyValue Property="Label" String="{@i18n>productId}" />
                         </Record>
                         <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="ContactName" />
-                            <PropertyValue Property="Label" String="{@i18n>contactName}" />
+                            <PropertyValue Property="Value" Path="UnitPrice" />
+                            <PropertyValue Property="Label" String="{@i18n>unitPrice}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Quantity" />
+                            <PropertyValue Property="Label" String="{@i18n>quantity}" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Discount" />
+                            <PropertyValue Property="Label" String="{@i18n>discount}" />
                         </Record>
                     </Collection>
                 </Annotation>
